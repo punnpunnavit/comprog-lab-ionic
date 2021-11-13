@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Weather Data
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,33 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Tes</ion-title>
     </ion-toolbar>
   </ion-header>
+<ion-card>
+<ion-item>
+  <ion-label>District</ion-label>
+  <ion-input [(ngModel)]='district'></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>Subdistrict</ion-label>
+  <ion-input [(ngModel)]='subdistrict'></ion-input>
+</ion-item>
+<ion-button expand='full' (click)='getWeatherData()'>Submit</ion-button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+</ion-card>
+
+<div *ngIf='weather$ | async as ans'>
+<ion-card *ngFor='let item of ans.data'>
+    <ion-card-content >
+      Time: {{item.datetime}}
+      <br/>
+      Temperature: {{item.temp2m}}
+      <br/>
+      Weather: {{item.weather}}
+    </ion-card-content>
+  
+  </ion-card>
+</div>
 </ion-content>
